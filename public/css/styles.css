@@ -96,16 +96,14 @@ footer {
 }
 
 .delete-btn {
-  background-color: #ff4d4d; /* Bright red for delete */
-  color: white;
+  background-color: transparent; /* Transparent background */
+  color: #ff4d4d; /* Bright red for delete */
   border: none;
-  border-radius: 4px;
-  padding: 4px 8px; /* Smaller padding for a compact button */
-  font-size: 12px; /* Smaller font size */
+  font-size: 20px; /* Larger font size for visibility */
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: color 0.3s ease;
 }
 
 .delete-btn:hover {
-  background-color: #e60000; /* Darker red on hover */
+  color: #e60000; /* Darker red on hover */
 }
