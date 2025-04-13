@@ -29,6 +29,11 @@ app.post("/", (req, res) => {
 
 })
 
+app.post("/delete", (req, res) => {
+    const itemToDelete = req.body.item;
+    items = items.filter(item => item !== itemToDelete);
+    res.redirect("/");
+});
 
 
 const PORT = process.env.PORT || 3000;
