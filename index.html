@@ -9,7 +9,21 @@
 </head>
 
 <body>
+    <h1>TODO List</h1>
+    <ul id="todo-list">
+        <!-- Example TODO item -->
+        <li>
+            <span>Example Task</span>
+            <button onclick="deleteTask(this)">Delete</button>
+        </li>
+    </ul>
 
+    <script>
+        function deleteTask(button) {
+            const li = button.parentElement;
+            li.remove();
+        }
+    </script>
 </body>
 
 </html>
