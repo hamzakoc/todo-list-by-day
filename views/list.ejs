@@ -16,7 +16,7 @@
                     <%= newListItem[i] %>
                 </p>
                 <form action="/delete" method="POST" style="display:inline;">
-                    <button type="submit" name="item" value="<%= newListItem[i] %>">Delete</button>
+                    <button class="delete-btn" type="submit" name="item" value="<%= newListItem[i] %>">-</button>
                 </form>
             </div>
         <%} %>
