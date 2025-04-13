@@ -1,0 +1,47 @@
+# This is the Deployment configuration for the web application
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web-app-deployment  # Name of the deployment
+spec:
+  replicas: 1  # Reduce the number of pod replicas to one
+  selector:
+    matchLabels:
+      app: web-app  # Label to identify the pods managed by this deployment
+  template:
+    metadata:
+      labels:
+        app: web-app  # Label applied to the pods
+    spec:
+      containers:
+      - name: web-app  # Name of the main application container
+        image: "${DOCKER_IMAGE}:${TAG}"  # Use dynamic image and tag from environment variables
+        env:
+        - name: DOCKER_IMAGE
+          valueFrom:
+            configMapKeyRef:
+              name: deployment-config
+              key: dockerImage
+        - name: TAG
+          valueFrom:
+            configMapKeyRef:
+              name: deployment-config
+              key: tag
+        ports:
+        - containerPort: 3000  # Port exposed by the container
+      volumes: []  # Removed the kube-config volume
+
+# This is the Service configuration to expose the web application
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: web-app-service  # Name of the service
+spec:
+  selector:
+    app: web-app  # Select pods with this label
+  type: LoadBalancer  # Change service type to LoadBalancer for external access
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 3000
