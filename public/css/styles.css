@@ -96,14 +96,26 @@ footer {
 }
 
 .delete-btn {
-  background-color: transparent; /* Transparent background */
-  color: #ff4d4d; /* Bright red for delete */
+  background-color: #ff4d4d; /* Bright red background */
+  color: white; /* White text */
   border: none;
-  font-size: 20px; /* Larger font size for visibility */
+  border-radius: 50%; /* Circular button */
+  width: 30px; /* Fixed width */
+  height: 30px; /* Fixed height */
+  font-size: 18px; /* Font size for the '-' symbol */
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
-  transition: color 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, background-color 0.3s ease;
 }
 
 .delete-btn:hover {
-  color: #e60000; /* Darker red on hover */
+  background-color: #e60000; /* Darker red on hover */
+  transform: scale(1.1); /* Slightly enlarge on hover */
+}
+
+.delete-btn:active {
+  transform: scale(0.9); /* Slightly shrink on click */
 }
