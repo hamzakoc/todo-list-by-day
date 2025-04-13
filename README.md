@@ -72,14 +72,36 @@ Run the PowerShell script to automate the deployment process:
 powershell -ExecutionPolicy Bypass -File ci-cd-pipeline.ps1
 ```
 
+### 7. Access the Application
+After running the CI/CD pipeline or deploying to Kubernetes, you can access the application at:
+```
+http://127.0.0.1:80
+```
+
 ## CI/CD Pipeline Workflow
-1. **Commit and Push to GitHub**: The script commits changes and pushes them to GitHub with a new tag.
-2. **Build Docker Image**: The script builds a Docker image with the specified tag.
-3. **Push Docker Image**: The image is pushed to Docker Hub.
-4. **Update Kubernetes ConfigMap**: The script updates the ConfigMap with the new image and tag.
-5. **Apply Kubernetes Deployment**: The deployment file is updated and applied to the cluster.
-6. **Verify Deployment**: The script checks the status of pods and services.
-7. **Restore Deployment File**: The deployment file is reset to its original state with placeholders.
+1. **Commit and Push to GitHub**: The CI/CD pipeline script commits changes to the repository and pushes them to GitHub with a new tag.
+2. **Build Docker Image**: The script builds a Docker image using the same tag version as the GitHub tag.
+3. **Push Docker Image**: The Docker image is pushed to Docker Hub.
+4. **Update Kubernetes Deployment**: The deployment file is dynamically updated with the new Docker image and tag.
+5. **Apply Kubernetes Deployment**: The updated deployment file is applied to the Kubernetes cluster.
+6. **Verify Deployment**: The script verifies the status of pods and services to ensure the deployment is successful.
+7. **Access the Application**: The application is accessible at `http://127.0.0.1:80`.
+
+### How to Use the CI/CD Pipeline
+1. Ensure you have the prerequisites installed (Node.js, Docker, Kubernetes, and PowerShell).
+2. Clone the repository and navigate to the project directory:
+   ```bash
+   git clone https://github.com/hamzakoc/todo-list-by-day.git
+   cd todo-list-by-day
+   ```
+3. Run the CI/CD pipeline script:
+   ```powershell
+   powershell -ExecutionPolicy Bypass -File ci-cd-pipeline.ps1
+   ```
+4. Once the script completes, access the application in your browser at:
+   ```
+   http://127.0.0.1:80
+   ```
 
 ## Notes
 - The `ci-cd-pipeline.ps1` script dynamically updates the Kubernetes deployment file with the correct Docker image and tag.
